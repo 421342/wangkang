@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off">
+
+	<!-- 变量配置 -->
+	<Properties>
+		<Property name="log_path">/home/java/server/logs</Property> 
+		<!-- <Property name="log_path">${web:rootDir}/custom</Property>-->
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level 
+				%logger{36} - %msg%n" />
+
+		</Console>
+		<RollingFile name="DailyRollingFileInfo"
+			fileName="${log_path}/springcloudinfo.log"
+			filePattern="${log_path}/springcloudinfo%d{yyyy-MM-dd}-%i.log.gz" ignoreExceptions="false">
+
+			<ThresholdFilter level="info" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+				<SizeBasedTriggeringPolicy size="200 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+         <RollingFile name="DailyRollingFiledebug" fileName="${log_path}/springclouddebug.log"
+            filePattern="${log_path}/springclouddebug%d{yyyy-MM-dd}-%i.log.gz" ignoreExceptions="false">
+         
+             <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+             <PatternLayout pattern="%d{dd-MMM-yyyy HH:mm:ss,SSS} [%t] %-5level %logger{36} - %msg%n" />
+               <Policies>
+                 <TimeBasedTriggeringPolicy interval="1"/>
+                 <SizeBasedTriggeringPolicy size="200 MB"/>
+               </Policies>
+             <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+		<RollingFile name="DailyRollingFileError"
+			fileName="${log_path}/springclouderror.log"
+			filePattern="${log_path}/springclouderror%d{yyyy-MM-dd}-%i.log.gz" ignoreExceptions="false">
+
+			<ThresholdFilter level="error" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+				<SizeBasedTriggeringPolicy size="200 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<!-- 业务debug日志 -->
+		<logger name="com.example.demo" level="DEBUG" />
+
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="DailyRollingFileInfo" />
+                        <AppenderRef ref="DailyRollingFiledebug" />
+			<AppenderRef ref="DailyRollingFileError" />
+		</Root>
+	</Loggers>
+</Configuration>

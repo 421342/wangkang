@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.MessageInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.example.demo.model.MessageInfo">
+		<result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+		<result column="PHONE_NUM" property="phoneNum"
+			jdbcType="VARCHAR" />
+		<result column="MESSAGE" property="message" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="DECIMAL" />
+		<result column="CREATE_DATE" property="createDate"
+			jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime"
+			jdbcType="TIMESTAMP" />
+		<result column="NATION_CODE" property="nationCode"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		MSG_ID, PHONE_NUM, MESSAGE, STATUS, CREATE_DATE, UPDATE_TIME, NATION_CODE
+	</sql>
+
+
+	<insert id="insert"
+		parameterType="com.example.demo.model.MessageInfo">
+		<selectKey keyProperty="msgId" resultType="String"
+			order="BEFORE">
+			select lpad(MSGSEQ.nextval,5,'0') from dual
+		</selectKey>
+		insert into MESSAGE_INFO (msgId, PHONE_NUM, MESSAGE,
+		STATUS, CREATE_DATE, UPDATE_TIME,
+		NATION_CODE)
+		values (#{msgId,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR},
+		#{message,jdbcType=VARCHAR},
+		#{status,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+		#{nationCode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.example.demo.model.MessageInfo">
+		<selectKey keyProperty="MSG_ID" resultType="String"
+			order="BEFORE">
+			select lpad(MSGSEQ.nextval,5,'0') from dual
+		</selectKey>
+		insert into MESSAGE_INFO
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="msgId != null">
+				MSG_ID,
+			</if>
+			<if test="phoneNum != null">
+				PHONE_NUM,
+			</if>
+			<if test="message != null">
+				MESSAGE,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="nationCode != null">
+				NATION_CODE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="msgId != null">
+				#{msgId,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneNum != null">
+				#{phoneNum,jdbcType=VARCHAR},
+			</if>
+			<if test="message != null">
+				#{message,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=DECIMAL},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nationCode != null">
+				#{nationCode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateByExampleSelective" parameterType="map">
+		update MESSAGE_INFO
+		<set>
+			<if test="phoneNum != null">
+				PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+			</if>
+			<if test="message != null">
+				MESSAGE = #{message,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=DECIMAL},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			
+				UPDATE_TIME = sysdate,
+		
+			<if test="nationCode != null">
+				NATION_CODE = #{nationCode,jdbcType=VARCHAR},
+			</if>
+	    	<if test="sid != null">
+				sid = #{sid,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where MSGID=#{MsgId,jdbcType=VARCHAR}
+	</update>
+	<!-- <update id="updateByExample" parameterType="map" > update MESSAGE_INFO 
+		set MSG_ID = #{record.msgId,jdbcType=VARCHAR}, PHONE_NUM = #{record.phoneNum,jdbcType=VARCHAR}, 
+		MESSAGE = #{record.message,jdbcType=VARCHAR}, STATUS = #{record.status,jdbcType=DECIMAL}, 
+		CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP}, UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}, 
+		NATION_CODE = #{record.nationCode,jdbcType=VARCHAR} </update> -->
+	<update id="updateStatusPatch" parameterType="java.util.List">
+	update MESSAGE_INFO
+		<trim prefix="set" suffixOverrides=",">
+			<trim prefix="USER_RECEIVE_TIME=case" suffix="end,">
+				<foreach collection="list" item="item" index="index">
+					<if test="item.userRcvTms!=null">
+						when sid=#{item.sid} then #{item.userRcvTms}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="DESCRIBE=case" suffix="end,">
+				<foreach collection="list" item="item" index="index">
+					<if test="item.des!=null">
+						when sid=#{item.sid} then #{item.des}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="STATUS=case" suffix="end,">
+				<foreach collection="list" item="item" index="index">
+					<if test="item.status!=null">
+						when sid=#{item.sid} then #{item.status}
+					</if>
+				</foreach>
+			</trim>
+		</trim>
+		<where>
+		<foreach collection="list" separator="or" item="item"
+			index="index">
+			sid=#{item.sid}
+		</foreach>
+		</where>
+	</update>
+</mapper>
