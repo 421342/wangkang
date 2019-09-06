@@ -1,0 +1,16 @@
+server:
+  port: 1234
+eureka:
+  instance:
+    hostname: lcaohost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://127.0.0.1:1234/eureka/
+  server:
+    eviction-interval-timer-in-ms: 5000
+    response-cache-auto-expiration-in-seconds: 6
+    enable-self-preservation: false
+
+
