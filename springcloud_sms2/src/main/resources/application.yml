@@ -1,35 +1,0 @@
-spring:
-  application:
-    name: test
-#eureka:#  client:#    service-url:#      defaultZone: http://127.0.0.1:1234/eureka/
-  datasource:
-     type: com.alibaba.druid.pool.DruidDataSource
-     druid:
-       driver-class-name: oracle.jdbc.driver.OracleDriver
-       url: jdbc:oracle:thin:@localhost:1521/orcl
-       username: test                                  # 数据库用户名
-       password: test  
-eureka:
-  instance:
-    hostname: lcaohost
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://127.0.0.1:1234/eureka/
-    registry-fetch-interval-seconds: 5
-    
-mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml
-server:  port: 58101
-
-logging:
-  config: classpath:log4j2-test.xml  
-#  level:
-#    com.example.demo.dao: debug
-
-meg:
-  appid: 1400248856
-  appkey: 309bcefef38d278b554f1d58e5db68f9
-  url: https://yun.tim.qq.com/v5/tlssmssvr/sendsms
-  msgNum: 6
