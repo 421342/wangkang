@@ -1,0 +1,42 @@
+##支付宝相关配置
+## 注意 ： 以下有 0开头的数字类型属性值都要带双引号的形式来声明，不然在注入到java中会自动去掉前面的0部分 
+alipay:
+  appId: "2019090667023078"
+  agreementNo: "000000000000"
+  version: "1.0"
+  channel: "ALIPAYAPP"
+  clientIp: "127.0.0.1"
+  tradeType: "PAP"
+  format: "json"
+  isCheckSign: true
+  isDecrypt: false
+  signType: "RSA2"
+  signScence: INDUSTRY|METRO
+  productCode: "GENERAL_WITHHOLDING"
+  personalProductCode: "GENERAL_WITHHOLDING_P" # 个人产品状态码 -----
+  #支付宝公钥
+  alipayPublicKey: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvIXEdhcjOHgseHKSLrlgL181G6eZ1wJv1WyWSFsNySt924/lRc5cxVIQAXD0aKq9INLm4W9QGOYNUH6WNbkGJWJ0jHQ8P6YCLqcO2sR6Na54z+2JqexBPxixeQ3XMinksRnyje2n/ACPP1ywkiW4Yvg2B5hEeG2L+n18hYCrPkQIwvCNGIbRXc/qRYMlt41kyU+Q/7MAnrr/5pa8xqL6GrQlRv39ynMK75NrD3jQlb2TapFkHYun/rsmCUgSNQ6WpTQ9m9+ClTFnFXWa2BboM0e1JPrrnQ2OOddR+jyj2nI36eY9mJZoYVN0qDwA8b+rxk7tHL7AMktUeACHNqF3CwIDAQAB"
+  #商户公钥
+  custPublicKey: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk84POftrrU61MWZhLjY6SMJWLM3+lwtlp1u8CjqT/O/a4YVTakSX8GAFsQM8Vu1px6DiJ5IeWWOKQDoycdDVSEiteGQRctiCnM6bPGwbW7crFOvfXufUUXsbyWtvu3uH8k74gqPprXrldAv28w1FUSXYgaBvlFCQM29xR1pYJRiNA4cUJMsOPE5p0iAytSPmO8T2T7D7O/HLsJw9lN8IvM7G+mi+porNGqo6dJZSVul2RbcMK5/7IpfNuuzAgSRikBQZbJHpI4Hriknf/Bk4mQfNg0cvYmDcSM3c5W9wEtsSc/sRdyRg8U767aoEN7AHkRqoOuoSOekGzF5QQnQLlQIDAQAB"
+  #商户私钥
+  custPrivateKey: "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCTzg85+2utTrUxZmEuNjpIwlYszf6XC2WnW7wKOpP879rhhVNqRJfwYAWxAzxW7WnHoOInkh5ZY4pAOjJx0NVISK14ZBFy2IKczps8bBtbtysU699e59RRexvJa2+7e4fyTviCo+mteuV0C/bzDUVRJdiBoG+UUJAzb3FHWlglGI0DhxQkyw48TmnSIDK1I+Y7xPZPsPs78cuwnD2U3wi8zsb6aL6mis0aqjp0llJW6XZFtwwrn/sil8267MCBJGKQFBlskekjgeuKSd/8GTiZB82DRy9iYNxIzdzlb3AS2xJz+xF3JGDxTvrtqgQ3sAeRGqg66hI56QbMXlBCdAuVAgMBAAECggEBAIDmGX1VeEhB9d7JDENC432EjaaxVy/erp5PcCPzhg/2FYrLvT1V6LOm6g+/ZKXikneYJOKhmXoXRwBQQKHln7tUNoRhsJ3Zl76sp9D/7rQDf7zVH44i25TbqhX0bhKw3pRArpUv4aB7JxQXQxwgHK1yNeiGRAiyYa+Zps61SV2/OObxeROrGgJ3irCn6T3riRAgZqTNhcFLXDvlC1ooBCU2gvQ4NC6gJEGgnJ5uFueBvTp6kF3WYwu2cw98LD5jWzb3fxwEgTB8rgI4PRh5josnbqQsPGgfPzaFP4F66SCKnQ5dLO0P2FUvKWw6M4JEIvwkJ8kLTskESNShGBkXvcECgYEA9YGa0BmRivv8jwQqrFenzPX+DAmeazpdGMWjU7BMt43wtkAzq9mA/aSpx+xCVUi0vaIYtjCu+kPrSKXN66UxlRn5JI3cdvPuQouMI4HEXpb44XlLsAzFkxgwWU4x4reK/YBf4JZgWjHbzcHRx5VKs3QV5zx/xyDo48asbVA8C00CgYEAmh9hZRXyZ02tstBiUsQyVQH5cffLZ5U3giAm2JI4neVjj3u+xNn4+5u2TIAFRnqpHxpHy5v4uvxtMMSJEZEWC88xIwZp2dQRnrKxhS8vy7LSmRryBqNkhKNOROpjmqc3nmAydpJ3lpqUewMj2spMJnhFbIDOgEpR4/hPw3UCjWkCgYEAmJTLPciWTxXbWptRVjlIPbcpBBw6TBRC5fF3V7z7gR0DXJG8S3LrmzhqmKk6dLyyMCV9TEYnib0KjuUVfP33Od6hnFlaiseB7fPCzhKJk+wqlB+JrcnSRWBENEzH7kr6ZCET9YYgLg5MuK1cDrm3ap6cOlG8bGsEswO4CFxUZQUCgYAz2QCrv/FXHUOk1wNssoH4JPzkgSbVRtZwmR5YVwBi5ctTdp6bnHRtOFngbGTZ6+O/CdlDPsozJT4aXNN7rGJNQLtX/A1Z8USoLZcYpeIfVZ4RUYZAA3GKSWHIP02Ytk44okX3q5g9eu0eYNUMAmgRvP4l3UMa12WrGlrC9zcPmQKBgDJYY6l39s03jhTtv/oAoubRAkaN0FUBb1hFGvafbDCMsjJShNzGK2LvELn+fDxXimHFoq4x4j5bPLofbQR40yWBByRZmQrY7SNnlLzVEpIXEeTLH/AaTXm1mS6+N6zwjBPBKkgE4olZA8upKHmLIp94zfQEBDNQ7GD/rUIGr4bI"
+  charSet: utf-8
+  queryTxnTimePeriod: 0,1,2,4,8,16,32
+  queryBindTimePeriod: 1000,500,500
+  billFolder: "d:/alipay/bill/" #对账单下载地址
+  #支付宝接口
+  url:
+    #网关地址
+    gateWay: https://openapi.alipay.com/gateway.do  
+  prefix:
+    tradeNo: "A" #支付宝交易流水序列号前缀
+    consume: "P" #支付宝交易流水序列号前缀-消费类
+    refund: "R" #支付宝交易流水序列号前缀-退款类
+    undo: "C" #支付宝交易流水序列号前缀-撤销类
+
+
+
+
+
+
+

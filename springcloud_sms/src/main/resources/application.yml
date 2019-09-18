@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: test
+#eureka:#  client:#    service-url:#      defaultZone: http://127.0.0.1:1234/eureka/
+  datasource:
+     type: com.alibaba.druid.pool.DruidDataSource
+     druid:
+       driver-class-name: oracle.jdbc.driver.OracleDriver
+       url: jdbc:oracle:thin:@localhost:1521/orcl
+       username: test                                  # 数据库用户名
+       password: test  
+  mail:                                  #邮件    host: smtp.163.com
+    username: 17521271709@163.com
+    password: 421342ww
+    properties:      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    default-encoding: UTF-8
+  rabbitmq:                           #rabbitmq
+    addresses: 127.0.0.1:5672
+    username: guest
+    password: guest
+    virtual-host: / 
+#eureka:
+#  instance:
+#    hostname: lcaohost
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://127.0.0.1:1234/eureka/
+#    registry-fetch-interval-seconds: 5
+  profiles:
+    include:
+    - alipay-dev
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+server:  port: 58101
+
+logging:
+  config: classpath:log4j2-test.xml  
+#  level:
+#    com.example.demo.dao: debug
+
+meg:
+  appid: 1400248856
+  appkey: 309bcefef38d278b554f1d58e5db68f9
+  url: https://yun.tim.qq.com/v5/tlssmssvr/sendsms
+  msgNum: 6
+# spring.mail.host=smtp.163.com
+#spring.mail.username=用户163邮箱
+#spring.mail.password=邮箱密码
+#spring.mail.properties.mail.smtp.auth=true
+#spring.mail.properties.mail.smtp.starttls.enable=true
+#spring.mail.properties.mail.smtp.starttls.required=true
+#spring.mail.default-encoding=UTF-8
+revmail:
+  addresser: 18130425895@163.com
